@@ -39,4 +39,6 @@ resource "azurerm_monitor_metric_alert" "storage_account_alert" {
   }
 
   description = "Alert triggered when Blob capacity exceeds 1%"
+  evaluation_offset = "PT1H"
+  window_size       = "PT1H"
 }
