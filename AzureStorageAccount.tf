@@ -16,8 +16,8 @@ resource "azurerm_monitor_action_group" "ActionGroupDemo" {
   resource_group_name = azurerm_resource_group.demo.name
   short_name          = "example-action-group"
   email_receiver {
-    name  = "email"
-    email = "gauravkumar.pandey@bluepi.in"
+    name          = "email"
+    email_address = "gauravkumar.pandey@bluepi.in"
   }
 }
 
@@ -39,5 +39,5 @@ resource "azurerm_monitor_metric_alert" "storage_account_alert" {
     action_group_id = azurerm_monitor_action_group.ActionGroupDemo.id
   }
 
-  description = "Alert triggered when Blob capacity exceeds 80%"
+  description = "Alert triggered when Blob capacity exceeds 1%"
 }
