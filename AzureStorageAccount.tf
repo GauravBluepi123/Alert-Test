@@ -14,7 +14,7 @@ resource "azurerm_storage_account" "StorageAccountDemo" {
 resource "azurerm_monitor_action_group" "ActionGroupDemo" {
   name                = "example-action-group"
   resource_group_name = azurerm_resource_group.demo.name
-  short_name          = "ex-action-grp"
+  short_name          = "exactiongrp"
   email_receiver {
     name          = "email"
     email_address = "gauravkumar.pandey@bluepi.in"
