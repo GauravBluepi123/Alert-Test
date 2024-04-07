@@ -38,7 +38,6 @@ resource "azurerm_monitor_metric_alert" "storage_account_alert" {
     action_group_id = azurerm_monitor_action_group.ActionGroupDemo.id
   }
 
-  description = "Alert triggered when Blob capacity exceeds 1%"
-  evaluation_offset = "PT1H"
+  description = "Alert triggered when Used capacity exceeds 1%"
   window_size       = "PT1H"
 }
