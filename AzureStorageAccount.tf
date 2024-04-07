@@ -32,7 +32,6 @@ resource "azurerm_monitor_metric_alert" "storage_account_alert" {
     aggregation      = "Average"
     operator         = "GreaterThan"
     threshold        = 1
-    time_aggregation = "Average"
   }
 
   action {
