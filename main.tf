@@ -9,7 +9,7 @@ terraform {
   cloud {
     organization = "BluePi"
     workspaces {
-      name = "Alerts"
+      name = "AlertsBlue"
     }
   }
 }
