@@ -28,7 +28,7 @@ resource "azurerm_monitor_metric_alert" "storage_account_alert" {
 
   criteria {
     metric_namespace = "Microsoft.Storage/storageAccounts"
-    metric_name      = "Used capacity"
+    metric_name      = "UsedCapacity"
     aggregation      = "Average"
     operator         = "GreaterThan"
     threshold        = 1
