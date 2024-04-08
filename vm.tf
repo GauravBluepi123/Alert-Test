@@ -71,3 +71,56 @@ resource "azurerm_virtual_machine" "example" {
     enable_automatic_upgrades = true
   }
 }
+
+resource "azurerm_monitor_action_group" "vm_alerts_action_group" {
+  name                = "vm-alerts-action-group"
+  resource_group_name = data.azurerm_resource_group.storage_account_rg.name
+  short_name          = "vmalerts"
+
+  email_receiver {
+    name          = "email"
+    email_address = "gauravkumar.pandey@bluepi.in"
+  }
+}
+
+resource "azurerm_monitor_metric_alert" "vm_cpu_alert" {
+  name                = "vm-cpu-usage-alert"
+  resource_group_name = data.azurerm_resource_group.storage_account_rg.name
+  scopes              = [azurerm_virtual_machine.example.id]
+
+  criteria {
+    metric_namespace = "microsoft.compute/virtualmachines"
+    metric_name      = "Percentage CPU"
+    aggregation      = "Average"
+    operator         = "GreaterThan"
+    threshold        = 90
+  }
+
+  action {
+    action_group_id = azurerm_monitor_action_group.vm_alerts_action_group.id
+  }
+
+  description = "Alert triggered when VM CPU usage exceeds 90%"
+  window_size = "PT5M"
+}
+
+resource "azurerm_monitor_metric_alert" "vm_memory_alert" {
+  name                = "vm-memory-usage-alert"
+  resource_group_name = data.azurerm_resource_group.storage_account_rg.name
+  scopes              = [azurerm_virtual_machine.example.id]
+
+  criteria {
+    metric_namespace = "microsoft.compute/virtualmachines"
+    metric_name      = "Percentage Memory"
+    aggregation      = "Average"
+    operator         = "GreaterThan"
+    threshold        = 80
+  }
+
+  action {
+    action_group_id = azurerm_monitor_action_group.vm_alerts_action_group.id
+  }
+
+  description = "Alert triggered when VM memory usage exceeds 80%"
+  window_size = "PT5M"  # Evaluate the metric every 5 minutes
+}
