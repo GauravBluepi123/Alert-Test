@@ -111,16 +111,16 @@ resource "azurerm_monitor_metric_alert" "vm_memory_alert" {
 
   criteria {
     metric_namespace = "microsoft.compute/virtualmachines"
-    metric_name      = "Percentage Memory"
+    metric_name      = "Available Memory Bytes"
     aggregation      = "Average"
     operator         = "GreaterThan"
-    threshold        = 80
+    threshold        = 20
   }
+}
 
   action {
     action_group_id = azurerm_monitor_action_group.vm_alerts_action_group.id
   }
 
   description = "Alert triggered when VM memory usage exceeds 80%"
-  window_size = "PT5M"  # Evaluate the metric every 5 minutes
-}
+  window_size = "PT5M"
