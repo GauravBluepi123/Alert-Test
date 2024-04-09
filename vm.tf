@@ -76,7 +76,7 @@ resource "azurerm_monitor_action_group" "vm_alerts_action_group" {
 
   email_receiver {
     name          = "email"
-    email_address = "gauravkumar.pandey@bluepi.in"
+    email_address = "rohit.yadav@bluepi.in"
   }
 }
 
@@ -90,7 +90,7 @@ resource "azurerm_monitor_metric_alert" "vm_cpu_alert" {
     metric_name      = "Percentage CPU"
     aggregation      = "Average"
     operator         = "GreaterThan"
-    threshold        = 90
+    threshold        = 1
   }
 
   action {
@@ -111,7 +111,7 @@ resource "azurerm_monitor_metric_alert" "vm_memory_alert" {
     metric_name      = "Available Memory Bytes"
     aggregation      = "Average"
     operator         = "GreaterThan"
-    threshold        = 80
+    threshold        = 1
   }
 
   action {
